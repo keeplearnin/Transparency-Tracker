@@ -1,60 +1,119 @@
 @import "tailwindcss";
 
+/*
+ * PayClear tokens — cool neutral canvas, one cobalt accent, status colors
+ * reserved for findings so they always mean something.
+ */
 :root {
-  --paper: #f6f3ec;
-  --card: #fffdf8;
-  --ink: #1f1d1a;
-  --muted: #6b655b;
-  --line: #e2dccf;
-  --accent: #1f4d3a;
-  --accent-soft: #dfeae2;
-  --pass: #2f6b45;
-  --pass-bg: #e3efe6;
-  --warn: #8a5a00;
-  --warn-bg: #f7ecd2;
-  --fail: #a33a2b;
-  --fail-bg: #f6e0db;
-  --info: #4a5a72;
-  --info-bg: #e5e9f0;
+  --canvas: #f3f5f8;
+  --surface: #ffffff;
+  --sunken: #f7f8fa;
+  --ink: #161b26;
+  --ink-2: #4a5263;
+  --ink-3: #7b8394;
+  --line: #e4e7ec;
+  --line-strong: #d0d5dd;
+  --accent: #2d4ef5;
+  --accent-ink: #ffffff;
+  --accent-soft: #eaeefe;
+  --pass: #0f7b55;
+  --pass-bg: #e6f4ee;
+  --warn: #a35a00;
+  --warn-bg: #fdf1dc;
+  --fail: #c8303c;
+  --fail-bg: #fdeaec;
+  --info: #475467;
+  --info-bg: #eef0f4;
+  --shadow: 0 1px 2px rgb(16 24 40 / 0.04), 0 1px 3px rgb(16 24 40 / 0.06);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #15171a;
-    --card: #1d2024;
-    --ink: #ece8df;
-    --muted: #a19b8f;
-    --line: #2f3338;
-    --accent: #8fc7a8;
-    --accent-soft: #23352c;
-    --pass: #8fd0a6;
-    --pass-bg: #1f3227;
-    --warn: #e6bf6a;
-    --warn-bg: #3a3020;
-    --fail: #f0998b;
-    --fail-bg: #3d2420;
-    --info: #a9b8d0;
-    --info-bg: #252c38;
+    --canvas: #0d1017;
+    --surface: #151a23;
+    --sunken: #11151d;
+    --ink: #e8ebf1;
+    --ink-2: #aab1bf;
+    --ink-3: #7c8496;
+    --line: #242b37;
+    --line-strong: #323a48;
+    --accent: #7b93ff;
+    --accent-ink: #0d1017;
+    --accent-soft: #1c2541;
+    --pass: #4fd1a0;
+    --pass-bg: #12291f;
+    --warn: #f3b454;
+    --warn-bg: #2e2412;
+    --fail: #ff7b85;
+    --fail-bg: #331a1d;
+    --info: #aab1bf;
+    --info-bg: #1d232e;
+    --shadow: none;
   }
 }
 
 @theme inline {
-  --color-paper: var(--paper);
-  --color-card: var(--card);
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-sunken: var(--sunken);
   --color-ink: var(--ink);
-  --color-muted: var(--muted);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
   --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
   --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
   --color-accent-soft: var(--accent-soft);
-  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Fraunces Variable", Georgia, serif;
+  --font-sans: "Instrument Sans Variable", ui-sans-serif, system-ui, sans-serif;
 }
 
 body {
-  background: var(--paper);
+  background: var(--canvas);
   color: var(--ink);
+  font-feature-settings: "ss01", "cv11";
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
 }
 
 ::selection {
   background: var(--accent-soft);
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Annotated posting marks */
+mark.m-fail {
+  background: transparent;
+  color: inherit;
+  text-decoration: underline wavy var(--fail);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+mark.m-warn {
+  background: var(--warn-bg);
+  color: inherit;
+  border-radius: 3px;
+  box-shadow: inset 0 -2px 0 var(--warn);
+}
+mark.m-pass {
+  background: var(--pass-bg);
+  color: inherit;
+  border-radius: 3px;
+  box-shadow: inset 0 -2px 0 var(--pass);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    animation: reveal 280ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  @keyframes reveal {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: none; }
+  }
 }

@@ -123,7 +123,7 @@ export function evaluate(input: CheckInput): Report {
   if (remoteUS) {
     for (const j of JURISDICTIONS) {
       if (j.level === "state" && !reasons.has(j.id))
-        reasons.set(j.id, "Remote role open across the US — most state laws cover remote hires in that state");
+        reasons.set(j.id, "Open to remote hires in this state");
     }
   }
 
@@ -190,7 +190,7 @@ export function evaluate(input: CheckInput): Report {
   if (parsed.remote === "remote" && !remoteUS) {
     general.push({
       id: "remote", label: "Remote eligibility", status: "warn",
-      detail: "The posting mentions remote work but not where. If people in any pay-transparency state can apply, those states' rules apply too. Tick \"open to remote candidates anywhere in the US\" to check them all.",
+      detail: "The posting mentions remote work but not where. If people in any pay-transparency state can apply, those states' rules apply too. Turn on \"Remote hires anywhere in the US\" to check them all.",
     });
   }
 

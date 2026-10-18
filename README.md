@@ -11,7 +11,7 @@ Paste a job posting and see which US state and city pay-transparency laws apply,
 
 Laws not yet in force (Delaware 2027, Columbus 2027) appear as warnings. On-request states such as Nevada and Rhode Island, and employers below a size threshold, appear as notes.
 
-## "Fix it for me" (Claude)
+## Fix with AI
 
 The optional AI check is in `src/lib/ai.ts` and `src/app/api/analyze/route.ts`. It runs in four steps:
 
@@ -24,7 +24,7 @@ The posting is treated as untrusted data in both prompts, and nothing is stored.
 
 | Env var | Required | Default |
 |---|---|---|
-| `ANTHROPIC_API_KEY` | Yes, for AI checks. Without it the site works rules-only and the AI button explains that AI checks aren't turned on. | — |
+| `ANTHROPIC_API_KEY` | Yes, for AI checks. Without it the site works rules-only and the "Rewrite posting" button explains that AI checks aren't turned on. | — |
 | `ANTHROPIC_MODEL` | No | `claude-haiku-5-5` |
 | `AI_CHECKS_PER_HOUR` | No. Per IP, per server instance. | `20` |
 
