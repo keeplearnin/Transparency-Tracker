@@ -11,7 +11,8 @@ export default function Home() {
         </h1>
         <p className="mt-4 text-lg text-muted">
           Paste a job posting. We check it against US state and city pay-transparency laws, flag what&apos;s
-          missing, and point to the source for every rule. Free, no sign-up, and nothing you paste leaves your browser.
+          missing, and point to the source for every rule. Then let Claude draft a fixed version. Free and no sign-up;
+          the quick check runs entirely in your browser.
         </p>
       </header>
 

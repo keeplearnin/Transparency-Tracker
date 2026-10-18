@@ -30,6 +30,8 @@ export interface CheckInput {
   /** Override remote detection. */
   remoteAnywhereUS?: boolean;
   today?: Date;
+  /** Pre-extracted fields (e.g. from Claude). Replaces the regex parser's reading field by field. */
+  parsed?: Partial<ParsedPosting>;
 }
 
 export interface Report {
@@ -110,7 +112,7 @@ function payChecks(p: ParsedPosting, j: Jurisdiction): Check[] {
 
 export function evaluate(input: CheckInput): Report {
   const today = input.today ?? new Date();
-  const parsed = parsePosting(input.text);
+  const parsed: ParsedPosting = { ...parsePosting(input.text), ...input.parsed };
   const remoteUS = input.remoteAnywhereUS ?? parsed.remote === "us-wide";
 
   // Which jurisdictions could this posting touch, and why?
